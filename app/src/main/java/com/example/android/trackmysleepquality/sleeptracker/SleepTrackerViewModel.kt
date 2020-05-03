@@ -42,9 +42,10 @@ class SleepTrackerViewModel(
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private val tonight = MutableLiveData<SleepNight?>()
-    private val nights = database.getAllNights()
+    private val _nights = database.getAllNights()
+    val nights: LiveData<List<SleepNight>> get() = _nights
 
-    val nightsString = Transformations.map(nights) { nights ->
+    val nightsString = Transformations.map(_nights) { nights ->
         formatNights(nights, application.resources)
     }
 
@@ -56,7 +57,7 @@ class SleepTrackerViewModel(
         null != it
     }
 
-    val clearButtonVisible = Transformations.map(nights) {
+    val clearButtonVisible = Transformations.map(_nights) {
         it?.isNotEmpty()
     }
 
