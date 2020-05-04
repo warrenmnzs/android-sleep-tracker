@@ -5,7 +5,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{()->clickListener.onClick(sleep)}">
 
         <ImageView
             android:id="@+id/quality_image"
@@ -31,7 +32,7 @@
             app:layout_constraintStart_toStartOf="@+id/quality_image"
             app:layout_constraintTop_toBottomOf="@+id/quality_image"
             app:sleepQualityString="@{sleep}"
-            tools:text="@string/five_excellent"/>
+            tools:text="@string/five_excellent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -40,5 +41,9 @@
         <variable
             name="sleep"
             type="com.example.android.trackmysleepquality.database.SleepNight" />
+
+        <variable
+            name="clickListener"
+            type="com.example.android.trackmysleepquality.sleeptracker.SleepNightListener" />
     </data>
 </layout>
